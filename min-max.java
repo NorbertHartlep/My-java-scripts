@@ -1,43 +1,32 @@
-import java.util.Scanner;
-
+import java.util.*;
 public class Main {
     public static void main(String[] args) {
-
-        while(true){
+        Random random = new Random();
         Scanner input = new Scanner(System.in);
-            float max = 1;
-            float min = 50000000;
 
-            System.out.println("wpisz cyfre !!!");
-            String slowo = input.nextLine();
-            String[] strArray = null;
-            strArray = slowo.split(" ");
-            int size = strArray.length;
-            int[] strArray1 = new int[size];
-            for (int i = 0; i < size; i++) {
-                strArray1[i] = Integer.parseInt(strArray[i]);
-            }
-            max = strArray1[0];
-            for (int i = 0; i < strArray1.length; i++) {
-                if (strArray1[i] > max) {
-                    max = strArray1[i];
-                }
-            }
-            System.out.println("Największa wartośc to: " + max);
+            int attempts = 5;
+            //System.out.println("Choose your number from 0 to 10");
+            //int computerChoice = random.nextInt(0,11);
+            //int yourChoice = input.nextInt();
 
-            for (int i = 0; i < strArray1.length; i++) {
-                if (strArray1[i] < min) {
-                    min = strArray1[i];
-                }
+            while (attempts > 0) {
+                System.out.println("Choose your number from 0 to 10");
+                int computerChoice = random.nextInt(0,11);
+                int yourChoice = input.nextInt();
+                if (yourChoice < 0 || yourChoice < 10) {
+                    if (yourChoice == computerChoice) {
+                        System.out.println("You won!");
+                        attempts = 0;
+                    } else if (yourChoice != computerChoice) {
+                        System.out.println("Not today," + "computer picked" + computerChoice + " and you picked"
+                                + yourChoice + "try again, you have " + attempts  + " more atempts");
+                        --attempts;
+                    }
+                } else
+                    System.out.println("Choose your number from 0 to 10, NOT other");
             }
 
-            System.out.println("Najmiejsza wartośc to: " + min);
 
-            if(strArray1[0] == 0){
-
-                System.exit(1);
         }
 
-}
-}
-}
+    }
